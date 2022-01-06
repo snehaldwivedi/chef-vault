@@ -30,4 +30,5 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           failedThreshold: 90
+          resultPath: spec/.last_run.json 
           
