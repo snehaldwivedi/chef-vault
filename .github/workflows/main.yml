@@ -5,10 +5,14 @@ name: CI
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
+  pull_request_target:
   push:
-    branches: main
-  pull_request:
-    branches: main
+    branches:
+      - main
+#   push:
+#     branches: main
+#   pull_request:
+#     branches: main
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -26,18 +30,12 @@ jobs:
       - name: run specs
         run: bundle exec rake spec --trace
         
-      - name: Upload coverage results    
-        uses: actions/upload-artifact@master
-        if: always()
+      - name: Simplecov Report
+        uses: aki77/simplecov-report-action@v1
         with:
-          name: coverage-report
-          path: coverage/
-#       - name: Simplecov Report
-#         uses: aki77/simplecov-report-action@v1
-#         with:
-#           token: ${{ secrets.GITHUB_TOKEN }}
-#           failedThreshold: 90
-#           resultPath: coverage/.last_run.json 
+          token: ${{ secrets.GITHUB_TOKEN }}
+          failedThreshold: 90
+          resultPath: coverage/.last_run.json 
 
     
 
