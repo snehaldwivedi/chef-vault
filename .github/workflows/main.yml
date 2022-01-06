@@ -31,6 +31,4 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           failedThreshold: 90
 
-    
-
 
